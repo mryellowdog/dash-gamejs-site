@@ -1,0 +1,556 @@
+<style>
+h1 {
+        font-family: sans-serif;
+      }
+      body {
+        background-color: black;
+      }
+      .container {
+        /*text-align: center;*/
+        color: white;
+        position: absolute;
+        /*top: 50%;*/
+        left: 50%;
+        transform: translateX(-50%) /*translateY(-50%)*/
+      }
+
+      .button {
+        background-color: #4caf50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+      .menu {
+        background-color: blue; /* Green */
+        border: none;
+        color: white;
+        padding: 4px 4px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+      h2 {
+        font-family: "Courier New", Courier, monospace;
+      }
+      h3 {
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+      p {
+        font-family: sans-serif;
+      }
+      small {
+        border-radius: 10px;
+        background-color: lightcoral; /* Green */
+        border: none;
+        color: white;
+        padding: 4px 4px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+      .no {
+        color: white;
+      }
+</style>
+
+
+
+<div class="container">
+    <details>
+        <summary>Menu</summary>
+        <a class="menu" href="/create.html">Create</a>
+        <a class="menu" href="/browse.html">Browse</a>
+        <a class="menu" href="/browse.html">Documentation</a>
+        <a class="menu" href="/help.html">Help</a>
+        <a class="menu" href="https://github.com/">GitHub</a>
+      </details>
+      <a href="index.html" class="no">Back to Dash Home</a>
+<h1 id="dash">dash</h1>
+<p>A simple JavaScript library for making 2D games</p>
+<h1 id="note">Note</h1>
+<p>This library is far from done and still might have bugs and incomplete stuff. And it probably can&#39;t be used to create anything super advanced yet. I will probably try to finish this if I get the time, but feel free to modify code or create a pull request as you like.</p>
+<h1 id="setting-up-dash-0-2">Setting up Dash 0.2</h1>
+<ol>
+<li>Download the file, or use the cdn</li>
+</ol>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://dashjs.netlify.app/dash.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre><ol>
+<li>Initializing Dash</li>
+</ol>
+<p>In Dash, we usually use a canvas element to put our game inside of, you can do this, like this</p>
+<pre><code>&lt;canvas id=<span class="hljs-string">"canvas"</span> <span class="hljs-built_in">width</span>=<span class="hljs-string">"600"</span> <span class="hljs-built_in">height</span>=<span class="hljs-string">"400"</span> <span class="hljs-built_in">border</span>=<span class="hljs-string">"1"</span>&gt;&lt;/canvas&gt;
+</code></pre><p>Then, define the canvas inside Javascript,</p>
+<pre><code><span class="hljs-keyword">const</span> canvas = <span class="hljs-keyword">new</span> Canvas(<span class="hljs-string">"canvas"</span>, <span class="hljs-number">600</span>, <span class="hljs-number">400</span>);
+</code></pre><p>Finally, start Dash up using</p>
+<pre><code>canvas.start()<span class="hljs-comment">;</span>
+</code></pre><h2 id="example-">Example:</h2>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"canvas"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"600"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"400"</span> <span class="hljs-attr">border</span>=<span class="hljs-string">"1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"dash.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+<span class="hljs-keyword">const</span> canvas = <span class="hljs-keyword">new</span> Canvas(<span class="hljs-string">"canvas"</span>, <span class="hljs-number">600</span>, <span class="hljs-number">400</span>);
+<span class="hljs-comment">// Start coding here</span>
+<span class="hljs-comment">//</span>
+canvas.start();
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre><h1 id="stuff-to-know">Stuff to know</h1>
+<p>It is reccomended to use Dash&#39;s loops rather than a standard while true loop, here are the loops you can use,</p>
+<pre><code>canvas.forever = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// Do something...</span>
+};
+canvas.handleInput = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// Do something...</span>
+};
+</code></pre><p>All of the loops do the same thing, I just provided specific ones for certain scripts to make it easier to organize.</p>
+<h1 id="adding-sprites">Adding sprites</h1>
+<p>You can add sprites using Dash, here&#39;s basic examples:</p>
+<pre><code>const square = new Sprite(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-string">"rectangle"</span>, <span class="hljs-string">"blue"</span>, <span class="hljs-string">""</span>); <span class="hljs-comment">// Creates a blue square</span>
+</code></pre><pre><code>const player = new Sprite(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-string">"image"</span>, <span class="hljs-string">"blue"</span>, <span class="hljs-string">"image.png"</span>); <span class="hljs-comment">// Creates an image sprite</span>
+</code></pre><p>Make your own using this format,</p>
+<pre><code>const InsertName = <span class="hljs-built_in">new</span> Sprite(X pos, Y pos, <span class="hljs-built_in">width</span>, <span class="hljs-built_in">height</span>, type (<span class="hljs-built_in">rectangle</span> <span class="hljs-keyword">or</span> <span class="hljs-built_in">image</span>), <span class="hljs-built_in">color</span> (<span class="hljs-keyword">if</span> applicable), <span class="hljs-built_in">image</span> url (<span class="hljs-keyword">if</span> applicable));
+</code></pre><p>Next, add all the sprites using canvas.addSprite()</p>
+<pre><code>canvas.addSprite(InsertSpriteName)<span class="hljs-comment">;</span>
+</code></pre><h1 id="functions">Functions</h1>
+<h2 id="logic">Logic</h2>
+<h3 id="random">Random</h3>
+<p>This function creates a random number between two integers,</p>
+<pre><code>random(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>);
+</code></pre><h3 id="pause">Pause</h3>
+<p>These functions pauses screen refresh and forever loops.</p>
+<pre><code>pause()<span class="hljs-comment">;</span>
+unpause()<span class="hljs-comment">;</span>
+</code></pre><p>This function only pauses screen refresh, forever loops, and collision checking. You can use pause with other scripts like this,</p>
+<pre><code><span class="hljs-function"><span class="hljs-title">if</span><span class="hljs-params">(pause == false)</span></span>{
+<span class="hljs-comment">// your scripts here.</span>
+}
+</code></pre><h2 id="moving-sprites">Moving Sprites</h2>
+<h3 id="set-x-y">Set X/Y</h3>
+<p>This function sets the x or y position of a specified sprite</p>
+<pre><code>player.setX(<span class="hljs-number">50</span>)<span class="hljs-comment">;</span>
+player.setY(<span class="hljs-number">50</span>)<span class="hljs-comment">;</span>
+</code></pre><h3 id="move">Move</h3>
+<p>This function moves the sprite by a certain x and/or y value</p>
+<pre><code>player.<span class="hljs-keyword">move(x, </span>y)<span class="hljs-comment">;</span>
+</code></pre><h3 id="change-x-y">Change X/Y</h3>
+<p>This function increases or decreases the x or y position of a sprite</p>
+<pre><code><span class="hljs-selector-tag">player</span><span class="hljs-selector-class">.changeX</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">// Increase the X by 1</span>
+<span class="hljs-selector-tag">player</span><span class="hljs-selector-class">.changeY</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">// Increase the Y by 1</span>
+<span class="hljs-selector-tag">player</span><span class="hljs-selector-class">.changeX</span>(-<span class="hljs-number">1</span>); <span class="hljs-comment">// Decrease the X by 1</span>
+<span class="hljs-selector-tag">player</span><span class="hljs-selector-class">.changeY</span>(-<span class="hljs-number">1</span>); <span class="hljs-comment">// Decrease the Y by 1</span>
+</code></pre><p>You can also still use increaseX/Y() or decreaseX/Y(), but I changed it to changeX/Y()</p>
+<h2 id="editing-sprites">Editing Sprites</h2>
+<p>Note: If you only want to set the looks of the sprite once, it might be easier to set it while creating and defining the sprite. See more in &#39;Adding Sprites&#39;</p>
+<h3 id="size">Size</h3>
+<p>This function sets the size of your sprite (works best on squares)</p>
+<pre><code><span class="hljs-built_in">player</span>.<span class="hljs-built_in">setSize</span>(<span class="hljs-number">100</span>);
+</code></pre><p>You can also use changeSize() to increase or decrease the size of the sprite,</p>
+<pre><code><span class="hljs-selector-tag">player</span><span class="hljs-selector-class">.changeSize</span>(<span class="hljs-number">10</span>); <span class="hljs-comment">// Increase the size by ten</span>
+<span class="hljs-selector-tag">player</span><span class="hljs-selector-class">.changeSize</span>(-<span class="hljs-number">10</span>); <span class="hljs-comment">// Decrease the size by ten</span>
+</code></pre><h3 id="width-and-height">Width and Height</h3>
+<p>These functions set the width and height of your sprite</p>
+<pre><code>player.setWidth<span class="hljs-comment">(100)</span>; <span class="hljs-comment">// Set the width and height of the sprite</span>
+player.setHeight<span class="hljs-comment">(50)</span>;
+</code></pre><p>You can also use changeWidth/Height to increase or decrease the height and width,</p>
+<pre><code>player.changeWidth(<span class="hljs-number">5</span>)<span class="hljs-comment">;</span>
+player.changeHeight(<span class="hljs-number">10</span>)<span class="hljs-comment">;</span>
+player.changeWidth(-<span class="hljs-number">20</span>)<span class="hljs-comment">;</span>
+player.changeHeight(-<span class="hljs-number">15</span>)<span class="hljs-comment">;</span>
+</code></pre><h3 id="color">Color</h3>
+<p>This function changes the color of your sprite</p>
+<pre><code>player.setColor(<span class="hljs-string">"green"</span>)<span class="hljs-comment">;</span>
+</code></pre><h3 id="image">Image</h3>
+<p>This function changes the image url of your sprite</p>
+<pre><code><span class="hljs-selector-tag">player</span><span class="hljs-selector-class">.setImage</span>(<span class="hljs-selector-tag">image</span><span class="hljs-selector-class">.png</span>);
+</code></pre><h3 id="type">Type</h3>
+<p>This function changes the type of sprite. (Rectangle or image)</p>
+<pre><code><span class="hljs-built_in">player</span>.<span class="hljs-built_in">setType</span>(<span class="hljs-string">"image"</span>)
+</code></pre><h2 id="input">Input</h2>
+<h3 id="keyboard">Keyboard</h3>
+<p>This function detects when the user presses certain keys on the keyboard</p>
+<pre><code><span class="hljs-keyword">if</span> (<span class="hljs-selector-tag">canvas</span>.isKeyDown(<span class="hljs-string">"Space"</span>)) {
+  <span class="hljs-comment">// Do something...</span>
+}
+</code></pre><p>You can also do &quot;isKeyUp&quot;, for when the key is released.</p>
+<pre><code><span class="hljs-keyword">if</span> (<span class="hljs-selector-tag">canvas</span>.isKeyUp(<span class="hljs-string">"Space"</span>)) {
+  <span class="hljs-comment">// Do something...</span>
+}
+</code></pre><h3 id="collisions">Collisions</h3>
+<p>This function detects if one sprite collides with another.</p>
+<pre><code><span class="hljs-keyword">if</span> <span class="hljs-comment">(sprite1.isTouching(sprite2)</span>) {
+  <span class="hljs-comment">// Do something...</span>
+}
+</code></pre><h2 id="data">Data</h2>
+<h3 id="sprite-info">Sprite Info</h3>
+<p>This function gets a sprite&#39;s information and outputs it into the console,</p>
+<pre><code>player.spriteInfo()<span class="hljs-comment">;</span>
+</code></pre><p>Output:</p>
+<pre><code>Sprite {<span class="hljs-string">x:</span> <span class="hljs-number">50</span>, <span class="hljs-string">y:</span> <span class="hljs-number">300</span>, <span class="hljs-string">width:</span> <span class="hljs-number">100</span>, <span class="hljs-string">height:</span> <span class="hljs-number">100</span>, <span class="hljs-string">type:</span> <span class="hljs-string">"rectangle"</span>…}
+<span class="hljs-string">x:</span> <span class="hljs-number">50</span>
+<span class="hljs-string">y:</span> <span class="hljs-number">300</span>
+<span class="hljs-string">width:</span> <span class="hljs-number">100</span>
+<span class="hljs-string">height:</span> <span class="hljs-number">100</span>
+<span class="hljs-string">type:</span> <span class="hljs-string">"rectangle"</span>
+<span class="hljs-string">color:</span> <span class="hljs-string">"green"</span>
+<span class="hljs-string">src:</span> <span class="hljs-string">""</span>
+&lt;constructor&gt;: <span class="hljs-string">"Sprite"</span>
+<span class="hljs-string">name:</span> <span class="hljs-string">"Sprite"</span>
+</code></pre><h3 id="canvas-info">Canvas Info</h3>
+<p>This function gets the canvas&#39;s information and outputs it into the console,</p>
+<pre><code>canvas.info()<span class="hljs-comment">;</span>
+</code></pre><p>Output:</p>
+<details>
+  <summary>Canvas Data (long)</summary>
+<code>
+Canvas {canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, sprites: Array(1), keys: Object, constructor: Object}
+canvas: 
+<canvas id="canvas" width="600" height="400" border="1"></canvas>
+ctx: CanvasRenderingContext2D
+canvas: 
+<canvas id="canvas" width="600" height="400" border="1"></canvas>
+globalAlpha: 1
+globalCompositeOperation: &quot;source-over&quot;
+filter: &quot;none&quot;
+imageSmoothingEnabled: true
+imageSmoothingQuality: &quot;low&quot;
+strokeStyle: &quot;#000000&quot;
+fillStyle: &quot;#000000&quot;
+shadowOffsetX: 0
+shadowOffsetY: 0
+shadowBlur: 0
+shadowColor: &quot;rgba(0, 0, 0, 0)&quot;
+lineWidth: 1
+lineCap: &quot;butt&quot;
+lineJoin: &quot;miter&quot;
+miterLimit: 10
+lineDashOffset: 0
+font: &quot;10px sans-serif&quot;
+textAlign: &quot;start&quot;
+textBaseline: &quot;alphabetic&quot;
+direction: &quot;ltr&quot;
+fontKerning: &quot;auto&quot;
+fontStretch: &quot;normal&quot;
+fontVariantCaps: &quot;normal&quot;
+letterSpacing: &quot;0px&quot;
+textRendering: &quot;auto&quot;
+wordSpacing: &quot;0px&quot;
+clip: ƒ clip() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+createConicGradient: ƒ createConicGradient() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+createImageData: ƒ createImageData() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+createLinearGradient: ƒ createLinearGradient() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+createPattern: ƒ createPattern() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+createRadialGradient: ƒ createRadialGradient() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+drawFocusIfNeeded: ƒ drawFocusIfNeeded() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+drawImage: ƒ drawImage() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+fill: ƒ fill() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+fillText: ƒ fillText() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+getContextAttributes: ƒ getContextAttributes() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+getImageData: ƒ getImageData() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+getLineDash: ƒ getLineDash() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+getTransform: ƒ getTransform() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+isContextLost: ƒ isContextLost() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+isPointInPath: ƒ isPointInPath() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+isPointInStroke: ƒ isPointInStroke() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+measureText: ƒ measureText() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+putImageData: ƒ putImageData() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+reset: ƒ reset() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+roundRect: ƒ roundRect() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+save: ƒ save() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+scale: ƒ scale() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+setLineDash: ƒ setLineDash() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+setTransform: ƒ setTransform() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+stroke: ƒ stroke() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+strokeText: ƒ strokeText() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+transform: ƒ transform() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+translate: ƒ translate() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+arc: ƒ arc() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+arcTo: ƒ arcTo() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+beginPath: ƒ beginPath() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+bezierCurveTo: ƒ bezierCurveTo() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+clearRect: ƒ clearRect() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+closePath: ƒ closePath() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+ellipse: ƒ ellipse() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+fillRect: ƒ fillRect() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+lineTo: ƒ lineTo() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+moveTo: ƒ moveTo() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+quadraticCurveTo: ƒ quadraticCurveTo() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+rect: ƒ rect() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+resetTransform: ƒ resetTransform() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+restore: ƒ restore() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+rotate: ƒ rotate() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+strokeRect: ƒ strokeRect() {}
+<constructor>: &quot;Function&quot;
+name: &quot;Function&quot;
+<constructor>: &quot;CanvasRenderingContext2D&quot;
+name: &quot;CanvasRenderingContext2D&quot;
+sprites: Array(1)
+0: Sprite
+x: 50
+y: 300
+width: 100
+height: 100
+type: &quot;rectangle&quot;
+color: &quot;green&quot;
+src: &quot;&quot;
+<constructor>: &quot;Sprite&quot;
+name: &quot;Sprite&quot;
+keys: Object
+<constructor>: &quot;Canvas&quot;
+name: &quot;Canvas&quot;
+  </code>
+  </details>
+
+<h3 id="get-fps">Get FPS</h3>
+<p>This function outputs the FPS into the console,</p>
+<pre><code>getFps()<span class="hljs-comment">;</span>
+</code></pre><p>Output:</p>
+<pre><code><span class="hljs-number">60</span>
+</code></pre><p>Note: This is the desired FPS already set. This does not reflect how the computer is actually processing the scripts.</p>
+<h2 id="settings">Settings</h2>
+<h3 id="fps">FPS</h3>
+<p>This setting allows you to set what FPS you desire. At the top of your script simply write,</p>
+<pre><code><span class="hljs-attribute">fps</span> = <span class="hljs-number">60</span><span class="hljs-comment">;</span>
+</code></pre><p>You can set it to any number. 60 is the default and is what I typically reccomend, but feel free to change it to whatever is best for your project.
+You can also use &#39;turbo&#39;. This setting makes the project run as fast as possible, limiting screen refresh and making calculations as fast as possible.</p>
+<pre><code><span class="hljs-attr">turbo</span> = <span class="hljs-literal">true</span>;
+</code></pre><p>Make sure to not set Turbo and FPS in the same script or else they will cancel out.</p>
+<h1 id="examples">Examples</h1>
+<h2 id="infinite-runner-game-example-">Infinite Runner Game Example,</h2>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"canvas.start();"</span>&gt;</span>START GAME<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"status"</span>&gt;</span>Dodging Game<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"canvas"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"600"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"400"</span> <span class="hljs-attr">border</span>=<span class="hljs-string">"1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"dash.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+      <span class="hljs-keyword">const</span> canvas = <span class="hljs-keyword">new</span> Canvas(<span class="hljs-string">"canvas"</span>, <span class="hljs-number">600</span>, <span class="hljs-number">400</span>);
+      <span class="hljs-keyword">const</span> player = <span class="hljs-keyword">new</span> Sprite(<span class="hljs-number">50</span>, <span class="hljs-number">150</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-string">"image"</span>, <span class="hljs-string">"blue"</span>, <span class="hljs-string">"bird.png"</span>);
+      <span class="hljs-keyword">const</span> enemy = <span class="hljs-keyword">new</span> Sprite(<span class="hljs-number">550</span>, <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">350</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-string">"image"</span>, <span class="hljs-string">"red"</span>, <span class="hljs-string">"storm.png"</span>);
+      canvas.addSprite(player);
+      canvas.addSprite(enemy);
+
+      canvas.handleInput = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">if</span> (canvas.isKeyDown(<span class="hljs-string">"ArrowUp"</span>)) {
+          player.increaseY(<span class="hljs-number">-5</span>);
+        }
+        <span class="hljs-keyword">if</span> (canvas.isKeyDown(<span class="hljs-string">"ArrowDown"</span>)) {
+          player.increaseY(<span class="hljs-number">5</span>);
+        }
+        <span class="hljs-keyword">if</span> (player.isTouching(enemy)) {
+          <span class="hljs-built_in">window</span>.location.reload();
+        }
+      };
+      setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        enemy.increaseX(<span class="hljs-number">-15</span>);
+        <span class="hljs-keyword">if</span> (enemy.x &lt; <span class="hljs-number">-50</span>) {
+          enemy.setX(<span class="hljs-number">600</span>);
+          enemy.setY(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">350</span>);
+        }
+      }, <span class="hljs-number">1000</span> / <span class="hljs-number">60</span>);
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre><h2 id="catching-game-example-">Catching Game Example,</h2>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Score:<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"scoreText"</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Time:<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"timerText"</span>&gt;</span>60<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"status"</span>&gt;</span>Catching Game<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"canvas"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"600"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"400"</span> <span class="hljs-attr">border</span>=<span class="hljs-string">"1"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"dash.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+      <span class="hljs-keyword">var</span> score = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">var</span> timer = <span class="hljs-number">60</span>;
+      <span class="hljs-keyword">const</span> canvas = <span class="hljs-keyword">new</span> Canvas(<span class="hljs-string">"canvas"</span>, <span class="hljs-number">600</span>, <span class="hljs-number">400</span>);
+      <span class="hljs-keyword">const</span> player = <span class="hljs-keyword">new</span> Sprite(<span class="hljs-number">50</span>, <span class="hljs-number">300</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-string">"image"</span>, <span class="hljs-string">"blue"</span>, <span class="hljs-string">"farmer.png"</span>);
+      <span class="hljs-keyword">const</span> food = <span class="hljs-keyword">new</span> Sprite(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">350</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-string">"image"</span>, <span class="hljs-string">"red"</span>, <span class="hljs-string">"apple.png"</span>);
+
+      canvas.addSprite(player);
+      canvas.addSprite(food);
+
+      canvas.handleInput = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">if</span> (canvas.isKeyDown(<span class="hljs-string">"ArrowRight"</span>)) {
+          player.increaseX(<span class="hljs-number">5</span>);
+        }
+        <span class="hljs-keyword">if</span> (canvas.isKeyDown(<span class="hljs-string">"ArrowLeft"</span>)) {
+          player.increaseX(<span class="hljs-number">-5</span>);
+        }
+        <span class="hljs-keyword">if</span> (player.isTouching(food)) {
+          <span class="hljs-comment">//alert("Game Over!");</span>
+          food.setY(<span class="hljs-number">50</span>);
+          food.setX(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">350</span>);
+          score += <span class="hljs-number">1</span>;
+          <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"scoreText"</span>).innerHTML = score;
+        }
+      };
+
+      canvas.start();
+
+      setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        food.increaseY(<span class="hljs-number">5</span>);
+        <span class="hljs-keyword">if</span> (food.y &gt; <span class="hljs-number">300</span>) {
+          food.setY(<span class="hljs-number">50</span>);
+          food.setX(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">350</span>);
+        }
+      }, <span class="hljs-number">1000</span> / <span class="hljs-number">60</span>);
+
+      setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        timer -= <span class="hljs-number">1</span>;
+        <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"timerText"</span>).innerHTML = timer;
+        <span class="hljs-keyword">if</span> (timer &lt; <span class="hljs-number">1</span>) {
+          timer = <span class="hljs-number">60</span>;
+          alert(<span class="hljs-string">"Game over! Good job, you got "</span> + score + <span class="hljs-string">" points!"</span>);
+          location.reload();
+        }
+      }, <span class="hljs-number">1000</span>);
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre><h2 id="flappy-bird-full-game-">Flappy Bird Full Game,</h2>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"score"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"highscore"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"highscore"</span>&gt;</span>Highscore: <span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"menu.gif"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"menu"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"startgame()"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">img</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"canvas"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"600"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"400"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"canvas"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"dash.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"highscore"</span>).innerHTML = <span class="hljs-string">"Highscore: "</span> + localStorage.getItem(<span class="hljs-string">"best"</span>);
+  <span class="hljs-comment">//</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">startgame</span>(<span class="hljs-params"></span>)</span>{
+<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"menu"</span>).remove();
+<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"highscore"</span>).remove();
+
+  <span class="hljs-keyword">var</span> score = <span class="hljs-number">0</span>;
+
+  <span class="hljs-keyword">const</span> canvas = <span class="hljs-keyword">new</span> Canvas(<span class="hljs-string">"canvas"</span>, <span class="hljs-number">600</span>, <span class="hljs-number">400</span>);
+  <span class="hljs-keyword">const</span> player = <span class="hljs-keyword">new</span> Sprite(<span class="hljs-number">50</span>, <span class="hljs-number">200</span>, <span class="hljs-number">48</span>, <span class="hljs-number">48</span>, <span class="hljs-string">"image"</span>, <span class="hljs-string">"blue"</span>, <span class="hljs-string">"https://apkfree.com/apk/0/16/icons/686.png"</span>);
+  <span class="hljs-keyword">const</span> obstacle = <span class="hljs-keyword">new</span> Sprite(<span class="hljs-number">500</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-string">"rectangle"</span>, <span class="hljs-string">"green"</span>, <span class="hljs-string">""</span>);
+  canvas.addSprite(player);
+  canvas.addSprite(obstacle);
+
+  canvas.handleInput = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (canvas.isKeyDown(<span class="hljs-string">"ArrowUp"</span>)) {
+      player.increaseY(<span class="hljs-number">-2</span>);
+    } <span class="hljs-keyword">else</span> {
+      player.increaseY(<span class="hljs-number">2</span>);
+    }
+
+    <span class="hljs-keyword">if</span> (player.isTouching(obstacle)) {
+      location.reload();
+    }
+  };
+
+  setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    obstacle.increaseX(<span class="hljs-number">-10</span>);
+    <span class="hljs-keyword">if</span> (obstacle.x &lt; <span class="hljs-number">-50</span>) {
+      score += <span class="hljs-number">1</span>;
+      <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"score"</span>).innerHTML = score;
+      <span class="hljs-keyword">if</span> (localStorage.getItem(<span class="hljs-string">"best"</span>) &lt; score){
+      localStorage.setItem(<span class="hljs-string">"best"</span>, score);
+      }
+      obstacle.setX(<span class="hljs-number">600</span>);
+      obstacle.setY(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">350</span>);
+      obstacle.height = <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">200</span>;
+    }
+  }, <span class="hljs-number">1000</span> / <span class="hljs-number">60</span>);
+  canvas.start();
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+<span class="hljs-selector-class">.highscore</span> {
+  <span class="hljs-attribute">background-color</span>: black;
+  <span class="hljs-attribute">color</span>: white;
+  <span class="hljs-attribute">max-width</span>: <span class="hljs-number">600</span>;
+}
+
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</code></pre><h1 id="credits">Credits</h1>
+<p>Created by Mryellowdog</p>
+</div>

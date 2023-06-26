@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dash JS</title>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </head>
+
+  <body>
+    <style>
+      h1 {
+        font-family: sans-serif;
+      }
+      body {
+        background-color: black;
+      }
+      .container {
+        text-align: center;
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+      }
+
+      .button {
+        background-color: #4caf50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+      .menu {
+        background-color: blue; /* Green */
+        border: none;
+        color: white;
+        padding: 4px 4px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+      h2 {
+        font-family: "Courier New", Courier, monospace;
+      }
+      h3 {
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+      p {
+        font-family: sans-serif;
+      }
+      .small {
+        border-radius: 10px;
+        background-color: lightcoral; /* Green */
+        border: none;
+        color: white;
+        padding: 4px 4px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+      .no {
+        color: white;
+      }
+    </style>
+    <div class="container">
+      <h1>Dash <small class="small">beta</small></h1>
+      <h2>About</h2>
+
+      <details>
+        <summary>Menu</summary>
+        <a class="menu" href="/create.html">Create</a>
+        <a class="menu" href="/browse.html">Browse</a>
+        <a class="menu" href="/browse.html">Documentation</a>
+        <a class="menu" href="/help.html">Help</a>
+        <a class="menu" href="https://github.com/">GitHub</a>
+      </details>
+      <!-- Place this tag where you want the button to render. -->
+      <h1 class="spinner">
+        <span style="color: yellow;">Dash</span> - Making JavaScript games fast,
+        fun, and free!
+      </h1>
+      <style>
+        .spinner {
+          -webkit-animation: spin 4s;
+        }
+
+        @-webkit-keyframes spin {
+          0% {
+            -webkit-transform: rotate(0deg);
+          }
+          100% {
+            -webkit-transform: rotate(360deg);
+          }
+        }
+      </style>
+      <p>
+        We all love making games, but <b>lets face it</b>, it's not the most
+        readable, or easy to write
+      </p>
+      <p>That's why we created Dash!</p>
+      <img style="float:right; padding: 0; margin:0" src="https://i.ibb.co/GRgpksv/download-9-removebg-preview.png" height=100 width=100></img>
+      <h3 class="fun" style="color: lime;">
+        An opensource, canvas based, JavaScript library for 2D Games
+      </h3>
+      <style>
+        .fun {
+          animation: myAnim 2s ease 0s 1 normal forwards;
+        }
+        @keyframes myAnim {
+          0% {
+            animation-timing-function: ease-in;
+            opacity: 1;
+            transform: translateY(-45px);
+          }
+
+          24% {
+            opacity: 1;
+          }
+
+          40% {
+            animation-timing-function: ease-in;
+            transform: translateY(-24px);
+          }
+
+          65% {
+            animation-timing-function: ease-in;
+            transform: translateY(-12px);
+          }
+
+          82% {
+            animation-timing-function: ease-in;
+            transform: translateY(-6px);
+          }
+
+          93% {
+            animation-timing-function: ease-in;
+            transform: translateY(-4px);
+          }
+
+          25%,
+          55%,
+          75%,
+          87% {
+            animation-timing-function: ease-out;
+            transform: translateY(0px);
+          }
+
+          100% {
+            animation-timing-function: ease-out;
+            opacity: 1;
+            transform: translateY(0px);
+          }
+        }
+
+        xmp {
+          background-color: lightgrey;
+          color: black;
+          display: inline-block;
+        }
+      </style>
+      <p>Set up your Dash project in as little as five minutes:</p>
+      <li>1. Download the newest version of Dash</li>
+      <xmp><script src="https://dash.netlify.app/dash.js"></script></xmp>
+      <br />
+      <a
+        class="github-button"
+        href="https://github.com/mryellowdog/banana-dog-games/archive/HEAD.zip"
+        data-icon="octicon-download"
+        aria-label="Download mryellowdog/banana-dog-games on GitHub"
+        >Download</a
+      >
+
+      <br />
+      <small
+        ><a
+          class="no"
+          href="https://github.com/mryellowdog/dash/blob/main/license.md"
+          >By using Dash you agree to our license and terms</a
+        ></small
+      >
+      <br />
+      <br />
+      <li>2. Set up the game screen and create sprites</li>
+      <xmp
+>const canvas = new Canvas("canvas", 600, 400);
+          const player = new Sprite(0, 0, 50, 50, "image", "blue", "image.png");
+
+      </xmp>
+
+      <li>3. Add all the sprites to the screen and start the program!</li>
+      <xmp
+>
+        canvas.addSprite(player);
+        canvas.start();
+      </xmp>
+
+      <p>Interesting in learning more about Dash?</p>
+      <a
+        class="no"
+        style="font-family: cursive;"
+        href="https://github.com/mryellowdog/dash/blob/main/README.md"
+        >Check out our full documentation!</a
+      >
+      <br />
+      <br />
+
+      <a href="index.html" class="no">Back to Dash Home</a>
+      <br />
+      <!--<small>
+        By using Dash you agree to our
+        <a class="no" href="/license.html">license</a></small
+      >
+      -->
+
+      <footer>
+        © 2023 Mryellowdog - Dash 0.1
+      </footer>
+    </div>
+  </body>
+</html>

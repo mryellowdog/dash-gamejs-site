@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dash JS - Browse</title>
+  </head>
+
+  <body>
+    <style>
+      h1 {
+        font-family: sans-serif;
+      }
+      body {
+        background-color: black;
+      }
+      .container {
+        text-align: center;
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+      }
+
+      .button {
+        background-color: #4caf50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+      .menu {
+        background-color: blue; /* Green */
+        border: none;
+        color: white;
+        padding: 4px 4px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+      h2 {
+        font-family: "Courier New", Courier, monospace;
+      }
+      h3 {
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+      p {
+        font-family: sans-serif;
+      }
+      .small {
+        border-radius: 10px;
+        background-color: lightcoral; /* Green */
+        border: none;
+        color: white;
+        padding: 4px 4px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+      .no {
+        color: white;
+      }
+      /* Gallery starts here */
+      div.gallery {
+        border: 1px solid #ccc;
+      }
+
+      div.gallery:hover {
+        border: 1px solid #777;
+      }
+
+      div.gallery img {
+        width: 100%;
+        height: auto;
+      }
+
+      div.desc {
+        padding: 15px;
+        text-align: center;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .responsive {
+        padding: 0 6px;
+        float: left;
+        width: 33%;
+      }
+
+      @media only screen and (max-width: 700px) {
+        .responsive {
+          width: 49.99999%;
+          margin: 6px 0;
+        }
+      }
+
+      @media only screen and (max-width: 500px) {
+        .responsive {
+          width: 100%;
+        }
+      }
+
+      .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+    </style>
+    <div class="container">
+      <h1>Dash <small class="small">beta</small></h1>
+      <h2>Browse</h2>
+
+      <details>
+        <summary>Menu</summary>
+        <a class="menu" href="/create.html">Create</a>
+        <a class="menu" href="/browse.html">Browse</a>
+        <a class="menu" href="/browse.html">Documentation</a>
+        <a class="menu" href="/help.html">Help</a>
+        <a class="menu" href="https://github.com/">GitHub</a>
+      </details>
+      <small>
+        <p>
+          Don't see your game here?
+          <a
+            style="color: white;"
+            href="https://github.com/mryellowdog/dash/issues/new"
+            >Click here to have it added! (use the "add my game" label)</a
+          >
+        </p>
+      </small>
+      <br />
+      <div class="responsive">
+        <div class="gallery">
+          <a target="_blank" href="https://7v4dqc.csb.app/flappy-bird.html">
+            <img
+              src="https://i.ibb.co/YXc9Zk9/Flappy-Clone.png"
+              alt="Cinque Terre"
+              width="600"
+              height="400"
+            />
+          </a>
+          <div class="desc">Flappy Clone - Mryellowdog</div>
+        </div>
+      </div>
+
+      <div class="responsive">
+        <div class="gallery">
+          <a
+            target="_blank"
+            href="https://7v4dqc.csb.app/inf-runner-example.html"
+          >
+            <img
+              src="https://i.ibb.co/xgnr4YX/Screenshot-2023-04-20-13-57-40.png"
+              alt="Forest"
+              width="600"
+              height="400"
+            />
+          </a>
+          <div class="desc">Dodging Game - Mryellowdog</div>
+        </div>
+      </div>
+
+      <div class="responsive">
+        <div class="gallery">
+          <a
+            target="_blank"
+            href="https://7v4dqc.csb.app/catching-game-example.html"
+          >
+            <img
+              src="https://i.ibb.co/KW87c9b/catch.png"
+              alt="Northern Lights"
+              width="600"
+              height="400"
+            />
+          </a>
+          <div class="desc">Catching Game - Mryellowdog</div>
+        </div>
+      </div>
+      <br />
+      <br />
+
+      <a href="index.html" class="no">Back to Dash Home</a>
+      <br />
+      <footer style="color: white;">
+        © 2023 Mryellowdog - Dash 0.1
+      </footer>
+    </div>
+
+    <!--<small>
+        By using Dash you agree to our
+        <a class="no" href="/license.html">license</a></small
+      >
+      -->
+  </body>
+</html>

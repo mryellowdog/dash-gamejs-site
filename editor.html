@@ -1,0 +1,119 @@
+<head>
+  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <title>Dash JS - Editor</title>
+</head>
+<div class="align">
+  <textarea
+    rows="45"
+    cols="115"
+    id="code"
+    class="code"
+    style="background-color: black;"
+    allign="left;"
+    spellcheck="false"
+  >
+  Start coding here
+  No installation is required for this editor!
+  Make sure to check out the documentation: dash.mryellowdog.com/docs.html
+  I hope you make something cool
+  - Running Dash 0.2.1 (Hopefully this is the correct version)
+  (Delete this once you start writing code)
+  </textarea>
+  <br />
+
+  <iframe id="output" width="800" height="450" allign="right"></iframe>
+
+  <button id="submit-b" onclick="update()">Run</button>
+  <button id="clear" onclick="test()">Clear</button>
+  <button id="save-button">Save as file</button>
+  <span id="status">- Autosaves every second - </span>
+
+  <a href="index.html">Back to Dash Home</a>
+  <script>
+    var splash = true;
+    function update() {
+      var frame = document.getElementById("output");
+      //$"#output".get(0);
+      var frameDoc = frame.contentDocument || frame.contentWindow.document;
+      var w = document.getElementById("code").value;
+      // fill window will html contents written
+      //  if (splash == "on") {
+      //    document
+      //       .getElementById("output")
+      //     .contentWindow.document.write(
+      //        "<div id='splash'><img src='https://i.ibb.co/JQcH1pt/Made-with-Dash.gif' alt='Made-with-Dash' border='0' height='100%' width='100%'></div><script>setTimeout(function(){document.getElementById('splash').remove();}, 2000);<" +
+      //           "/script>"
+      //      );
+      //   }
+      document
+        .getElementById("output")
+        .contentWindow.document.write("<script src='dash.js'><" + "/script>");
+      setTimeout(function () {
+        document.getElementById("output").contentWindow.document.write(w); // fill window will html contents written
+      }, 0);
+    }
+  </script>
+  <script>
+    function test() {
+      window.location.reload();
+    }
+  </script>
+
+  <script>
+    document.getElementById("code").innerHTML = localStorage.getItem(
+      "contents"
+    );
+    setInterval(() => {
+      const d = new Date();
+      let time = d.getTime();
+      var x = document.getElementById("code").value;
+
+      // document.getElementById("code").innerHTML = x;
+      localStorage.setItem("contents", x);
+    }, 1000);
+  </script>
+</div>
+
+<script>
+  function saveFileAs() {
+    if ((promptFilename = prompt("Save file as", ""))) {
+      var textBlob = new Blob(
+        [
+          localStorage.getItem("contents") +
+            "<script src='https://dashjs.netlify.app/dash.js'></" +
+            "script>"
+        ],
+        {
+          type: "text/html"
+        }
+      );
+      var downloadLink = document.createElement("a");
+      downloadLink.download = promptFilename;
+      downloadLink.innerHTML = "Download File";
+      downloadLink.href = window.URL.createObjectURL(textBlob);
+      downloadLink.click();
+      delete downloadLink;
+      delete textBlob;
+    }
+  }
+
+  document.getElementById("save-button").onclick = saveFileAs;
+</script>
+
+<style>
+  .code {
+    color: white;
+    text-align: left;
+  }
+  iframe {
+    allign: right;
+    width: 42%;
+  }
+  .align {
+  }
+
+  textarea,
+  iframe {
+    float: left;
+  }
+</style>
